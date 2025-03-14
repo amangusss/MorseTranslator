@@ -35,12 +35,12 @@
                     else if (_englishMap.ContainsKey(c))
                         output += _englishMap[c] + " ";
                     else
-                        output += "incorrect character ";
+                        output += Constants.InvalidCharacter;
                 }
             }
             else {
                 foreach (char c in upper) {
-                    output += _englishMap.ContainsKey(c) ? _englishMap[c] + " " : "incorrect character ";
+                    output += _englishMap.ContainsKey(c) ? _englishMap[c] + " " : Constants.InvalidCharacter;
                 }
             }
             return output.Trim();
@@ -52,21 +52,21 @@
             string outputPath = "output.txt";
             
             if (!fileManager.Exists(inputPath)) {
-                Console.WriteLine("The file input.txt not found!");
+                Console.WriteLine(Constants.ErrorInputFile);
                 Console.ReadKey();
                 return;
             }
 
             string inputText = fileManager.Read(inputPath);
-            Console.WriteLine("Enter the version (v0.1, v0.2, v1.0):");
+            Console.WriteLine(Constants.VersionPrompt);
             string version = Console.ReadLine();
             if (version != "v0.1" && version != "v0.2" && version != "v1.0") {
-                Console.WriteLine("Incorrect version, v0.1 is used by default.");
+                Console.WriteLine(Constants.InvalidVersion);
                 version = "v0.1";
             }
             string morse = Translate(inputText, version);
             fileManager.Write(outputPath, morse);
-            Console.WriteLine("Result recorded in " + outputPath);
+            Console.WriteLine(Constants.OutputCreated + outputPath);
             
             if (version == "v1.0") {
                 SoundPlayer soundPlayer = new SoundPlayer();
