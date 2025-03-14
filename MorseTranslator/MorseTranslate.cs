@@ -5,7 +5,7 @@
     using System.Threading;
     
     public class MorseTranslator {
-        private static Dictionary<char, string> _englishMap = new Dictionary<char, string> {
+        private static readonly Dictionary<char, string> EnglishMap = new Dictionary<char, string> {
             {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."},
             {'E', "."}, {'F', "..-."}, {'G', "--."}, {'H', "...."},
             {'I', ".."}, {'J', ".---"}, {'K', "-.-"}, {'L', ".-.."},
@@ -15,7 +15,7 @@
             {'Y', "-.--"}, {'Z', "--.."}, {' ', "/"}
         };
         
-        private static Dictionary<char, string> _russianMap = new Dictionary<char, string> {
+        private static readonly Dictionary<char, string> RussianMap = new Dictionary<char, string> {
             {'А', ".-"}, {'Б', "-..."}, {'В', ".--"}, {'Г', "--."}, {'Д', "-.."},
             {'Е', "."}, {'Ж', "...-"}, {'З', "--.."}, {'И', ".."}, {'Й', ".---"},
             {'К', "-.-"}, {'Л', ".-.."}, {'М', "--"}, {'Н', "-."}, {'О', "---"},
@@ -26,30 +26,27 @@
         };
 
         private static string Translate(string text, string version) {
-            string output = "";
-            string upper = text.ToUpper();
-            if (version == "v0.2" || version == "v1.0") {
-                foreach (char c in upper) {
-                    if (_russianMap.ContainsKey(c))
-                        output += _russianMap[c] + " ";
-                    else if (_englishMap.ContainsKey(c))
-                        output += _englishMap[c] + " ";
-                    else
-                        output += Constants.InvalidCharacter;
+            var upper = text.ToUpper();
+            var selectedMap = version == "v0.2" || version == "v1.0" ? RussianMap : EnglishMap;
+            var builder = new System.Text.StringBuilder();
+            foreach (var c in upper) {
+                if (selectedMap.TryGetValue(c, out string morse)) {
+                    builder.Append(morse).Append(" ");
+                }
+                else if ((version == "v0.2" || version == "v1.0") && EnglishMap.TryGetValue(c, out morse)) {
+                    builder.Append(morse).Append(" ");
+                }
+                else {
+                    builder.Append(Constants.InvalidCharacter);
                 }
             }
-            else {
-                foreach (char c in upper) {
-                    output += _englishMap.ContainsKey(c) ? _englishMap[c] + " " : Constants.InvalidCharacter;
-                }
-            }
-            return output.Trim();
+            return builder.ToString().Trim();
         }
 
         public static void Main(string[] args) {
-            FileManager fileManager = new FileManager();
-            string inputPath = "input.txt";
-            string outputPath = "output.txt";
+            var fileManager = new FileManager();
+            const string inputPath = "input.txt";
+            const string outputPath = "output.txt";
             
             if (!fileManager.Exists(inputPath)) {
                 Console.WriteLine(Constants.ErrorInputFile);
@@ -57,20 +54,20 @@
                 return;
             }
 
-            string inputText = fileManager.Read(inputPath);
+            var inputText = fileManager.Read(inputPath);
             Console.WriteLine(Constants.VersionPrompt);
-            string version = Console.ReadLine();
+            var version = Console.ReadLine();
             if (version != "v0.1" && version != "v0.2" && version != "v1.0") {
                 Console.WriteLine(Constants.InvalidVersion);
                 version = "v0.1";
             }
-            string morse = Translate(inputText, version);
+            var morse = Translate(inputText, version);
             fileManager.Write(outputPath, morse);
             Console.WriteLine(Constants.OutputCreated + outputPath);
             
             if (version == "v1.0") {
-                SoundPlayer soundPlayer = new SoundPlayer();
-                Thread soundThread = new Thread(() => soundPlayer.PlaySound(morse));
+                var soundPlayer = new SoundPlayer();
+                var soundThread = new Thread(() => soundPlayer.PlaySound(morse));
                 soundThread.Start();
                 soundThread.Join();
             }

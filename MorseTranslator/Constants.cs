@@ -1,6 +1,6 @@
-﻿namespace MorseTranslator
-{
+﻿namespace MorseTranslator {
     public static class Constants {
+        
         public static readonly string InvalidCharacter = "Invalid character ";
         public static readonly string ErrorInputFile = "The file input.txt not found!";
         public static readonly string VersionPrompt = "Enter the version (v0.1, v0.2, v1.0):";
