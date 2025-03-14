@@ -2,7 +2,8 @@
     
     using System;
     using System.Collections.Generic;
-
+    using System.Threading;
+    
     public class MorseTranslator {
         private static Dictionary<char, string> _englishMap = new Dictionary<char, string> {
             {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."},
@@ -66,6 +67,14 @@
             string morse = Translate(inputText, version);
             fileManager.Write(outputPath, morse);
             Console.WriteLine("Result recorded in " + outputPath);
+            
+            if (version == "v1.0") {
+                SoundPlayer soundPlayer = new SoundPlayer();
+                Thread soundThread = new Thread(() => soundPlayer.PlaySound(morse));
+                soundThread.Start();
+                soundThread.Join();
+            }
+            
             Console.ReadKey();
         }
     }   
