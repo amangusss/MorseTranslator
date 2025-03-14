@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 class MorseTranslator {
     static Dictionary<char, string> _morseMap = new Dictionary<char, string> {
@@ -20,8 +21,20 @@ class MorseTranslator {
         return output.Trim();
     }
 
-    static void Main(string[] args) {
-        Console.WriteLine(Translate("hello world"));
+    public static void Main(string[] args) {
+        string inputPath = "input.txt";
+        string outputPath = "output.txt";
+        
+        if (!File.Exists(inputPath)) {
+            Console.WriteLine("The file input.txt not found!");
+            Console.ReadKey();
+            return;
+        }
+
+        string inputText = File.ReadAllText(inputPath);
+        string morse = Translate(inputText);
+        File.WriteAllText(outputPath, morse);
+        Console.WriteLine("Result recorded in " + outputPath);
         Console.ReadKey();
     }
 }
