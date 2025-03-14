@@ -59,6 +59,10 @@
             string inputText = fileManager.Read(inputPath);
             Console.WriteLine("Enter the version (v0.1, v0.2, v1.0):");
             string version = Console.ReadLine();
+            if (version != "v0.1" && version != "v0.2" && version != "v1.0") {
+                Console.WriteLine("Incorrect version, v0.1 is used by default.");
+                version = "v0.1";
+            }
             string morse = Translate(inputText, version);
             fileManager.Write(outputPath, morse);
             Console.WriteLine("Result recorded in " + outputPath);
