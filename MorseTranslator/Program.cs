@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 class MorseTranslator {
-    private static Dictionary<char, string> _morseMap = new Dictionary<char, string> {
+    static Dictionary<char, string> _morseMap = new Dictionary<char, string> {
         {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."},
         {'E', "."}, {'F', "..-."}, {'G', "--."}, {'H', "...."},
         {'I', ".."}, {'J', ".---"}, {'K', "-.-"}, {'L', ".-.."},
@@ -12,13 +12,16 @@ class MorseTranslator {
         {'Y', "-.--"}, {'Z', "--.."}, {' ', "/"}
     };
 
-    public static void Main(string[] args) { 
-        string input = "hello world !3 asd";
+    private static string Translate(string text) {
         string output = "";
-        foreach (char c in input.ToUpper()) {
-            output += _morseMap.ContainsKey(c) ? _morseMap[c] + " " : "incorrect symbol ";
+        foreach (char c in text.ToUpper()) {
+            output += _morseMap.ContainsKey(c) ? _morseMap[c] + " " : "? ";
         }
-        Console.WriteLine(output.Trim());
+        return output.Trim();
+    }
+
+    static void Main(string[] args) {
+        Console.WriteLine(Translate("hello world"));
         Console.ReadKey();
     }
 }
