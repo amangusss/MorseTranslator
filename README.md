@@ -126,6 +126,11 @@ Run the tests through the Unit Tests window in Rider.
 
 ```
 MorseTranslator/
+├── bin/
+│   ├── Debug/
+│   │   ├── input.txt
+│   │   ├── output.txt
+│   │   ├── MorseTranslator.exe
 ├── README.md
 ├── input.txt
 ├── output.txt
