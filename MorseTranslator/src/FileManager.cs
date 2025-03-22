@@ -1,5 +1,4 @@
 ﻿namespace MorseTranslator {
-
     using System.IO;
 
     public class FileManager {
