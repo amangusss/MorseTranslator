@@ -1,6 +1,6 @@
 # MorseTranslator
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley)
 [![Build Status](https://img.shields.io/github/workflow/status/yourusername/MorseTranslator/CI)](https://github.com/yourusername/MorseTranslator/actions)
 
 MorseTranslator is a C# console application that translates plain text into Morse code. The project supports both English and Russian languages, and also offers the ability to play audio signals for Morse code.
@@ -9,7 +9,7 @@ MorseTranslator is a C# console application that translates plain text into Mors
 
 ## Table of Contents
 
-- [Description](#description)
+- [Description](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley)
 - [Releases](#releases)
 - [Installation and launch](#installation-and-launch)
 - [Test launch](#test-launch)
@@ -132,6 +132,9 @@ Run the tests through the Unit Tests window in Rider.
 
 ### 3. Output result
 ![Output Result](screenshots/output.png)  
+
+### Video-tutorial
+[![Video](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFORnR4BcauutDl6LLh4ne0a7Q4a4Iqi7eg&s)](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley)
 
 ---
 
