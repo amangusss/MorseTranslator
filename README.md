@@ -122,6 +122,19 @@ Run the tests through the Unit Tests window in Rider.
 
 ---
 
+## Demo
+
+### 1. Input file example
+![Input File Example](screenshots/input.png)
+
+### 2. Console interaction
+![Console Prompt](screenshots/console.png)  
+
+### 3. Output result
+![Output Result](screenshots/output.png)  
+
+---
+
 ## Project structure
 
 ```
