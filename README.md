@@ -134,7 +134,7 @@ Run the tests through the Unit Tests window in Rider.
 ![Output Result](screenshots/output.png)  
 
 ### Video-tutorial
-[![Video](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFORnR4BcauutDl6LLh4ne0a7Q4a4Iqi7eg&s)](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley)
+[![Video](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdFORnR4BcauutDl6LLh4ne0a7Q4a4Iqi7eg&s)](https://youtu.be/9qcXAHqqCo8)
 
 ---
 
